@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Energia Solar - Contato e Cálculo de Bateria</title>
+    <style>
+        /* Estilos CSS Gerais */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            display: flex; /* Para organizar o conteúdo em colunas */
+            flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+            gap: 40px; /* Espaço entre as colunas */
+        }
+
+        h1, h2 {
+            color: #28a745; /* Verde energia solar */
+            text-align: center;
+            margin-bottom: 30px;
+            width: 100%; /* Ocupa a largura total */
+        }
+
+        /* Seção de Contato */
+        .contato-section {
+            flex: 1; /* Ocupa metade do espaço disponível */
+            min-width: 300px; /* Largura mínima para a coluna */
+            padding-right: 20px;
+            border-right: 1px solid #eee; /* Separador visual */
+        }
+
+        .contato-section p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .contato-section .link-contato {
+            display: block;
+            margin-bottom: 15px;
+            background-color: #e6ffe6; /* Fundo mais claro para links */
+            padding: 12px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .contato-section .link-contato:hover {
+            background-color: #d1ffd1;
+        }
+
+        .contato-section a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .contato-section a:hover {
+            text-decoration: underline;
+        }
+
+        /* Seção da Calculadora */
+        .calculadora-section {
+            flex: 1; /* Ocupa a outra metade do espaço disponível */
+            min-width: 300px; /* Largura mínima para a coluna */
+            padding-left: 20px;
+        }
+
+        .calculadora-section label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .calculadora-section input[type="number"] {
+            width: calc(100% - 22px); /* 100% menos padding e borda */
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1em;
+        }
+
+        .calculadora-section button {
+            background-color: #28a745;
+            color: white;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .calculadora-section button:hover {
+            background-color: #218838;
+        }
+
+        #resultado-bateria {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #e9f7ef; /* Fundo claro para o resultado */
+            border: 1px solid #cce5d6;
+            border-radius: 8px;
+            font-size: 1.1em;
+            color: #1a512d;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #resultado-bateria span {
+            color: #28a745; /* Destaque para o valor */
+            font-size: 1.3em;
+        }
+
+        /* Responsividade Básica */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column; /* Empilha as colunas em telas menores */
+                gap: 30px;
+                padding: 25px;
+            }
+            .contato-section {
+                border-right: none;
+                border-bottom: 1px solid #eee; /* Adiciona separador horizontal */
+                padding-right: 0;
+                padding-bottom: 30px;
+            }
+            .calculadora-section {
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>CV Energia Solar</h1>
+
+        <div class="contato-section">
+            <h2>Fale Conosco!</h2>
+            <p>A energia solar está ao seu alcance. Entre em contato com a **CV Energia Solar** e descubra como podemos iluminar seu futuro!</p>
+
+            <div class="link-contato">
+                <p>Nosso **Instagram**:</p>
+                <a href="https://www.instagram.com/cvenergiasolar/" target="_blank" rel="noopener noreferrer">@cvenergiasolar</a>
+            </div>
+
+            <div class="link-contato">
+                <p>Ou se preferir, via **WhatsApp**:</p>
+                <a href="https://wa.me/5511953304603" target="_blank" rel="noopener noreferrer">11 95330-4603</a>
+            </div>
+        </div>
+
+        <div class="calculadora-section">
+            <h2>Calculadora de Bateria Solar</h2>
+            <p>Estime a capacidade de bateria necessária para sua casa com base no valor da sua conta de luz e nas horas de autonomia desejadas.</p>
+
+            <label for="conta-luz">Valor da sua Conta de Luz (R$):</label>
+            <input type="number" id="conta-luz" placeholder="Ex: 1500" required min="1">
+
+            <label for="autonomia-horas">Horas de Autonomia Desejadas:</label>
+            <input type="number" id="autonomia-horas" placeholder="Ex: 10" required min="1" max="24">
+
+            <button onclick="calcularBateria()">Calcular Capacidade</button>
+
+            <div id="resultado-bateria">
+                Insira os valores para calcular.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calcularBateria() {
+            const valorContaLuz = parseFloat(document.getElementById('conta-luz').value);
+            const autonomiaHoras = parseFloat(document.getElementById('autonomia-horas').value);
+            const resultadoDiv = document.getElementById('resultado-bateria');
+
+            if (isNaN(valorContaLuz) || isNaN(autonomiaHoras) || valorContaLuz <= 0 || autonomiaHoras <= 0) {
+                resultadoDiv.innerHTML = "Por favor, insira valores válidos e positivos para a conta de luz e autonomia.";
+                resultadoDiv.style.backgroundColor = '#f8d7da'; /* Cor de fundo de erro */
+                resultadoDiv.style.color = '#721c24'; /* Cor do texto de erro */
+                resultadoDiv.style.borderColor = '#f5c6cb';
+                return;
+            }
+
+            // Parâmetros do cálculo (podem ser ajustados, ou até mesmo inseridos pelo usuário)
+            const custoKWh = 1.00;       // R$ por kWh (média estimada no Brasil)
+            const eficienciaSistema = 0.80;  // Eficiência combinada (inversor + bateria), 80%
+            const dodBateria = 0.90;         // Profundidade de Descarga (Depth of Discharge), 90% para lítio
+
+            // 1. Consumo Mensal em kWh
+            const consumoKwhMensal = valorContaLuz / custoKWh;
+
+            // 2. Consumo Diário e Energia Necessária para Autonomia
+            const consumoKwhDiario = consumoKwhMensal / 30;
+            const energiaParaAutonomiaBruta = (consumoKwhDiario / 24) * autonomiaHoras;
+
+            // 3. Capacidade Total de Baterias (considerando perdas e DOD)
+            const energiaComPerdas = energiaParaAutonomiaBruta / eficienciaSistema;
+            const capacidadeBateriaNecessaria = energiaComPerdas / dodBateria;
+
+            resultadoDiv.innerHTML = `
+                <p>Com base nos dados fornecidos:</p>
+                <p>Consumo Mensal Estimado: <strong>${consumoKwhMensal.toFixed(0)} kWh</strong></p>
+                <p>Para ${autonomiaHoras} horas de autonomia, a capacidade de bateria estimada é de:</p>
+                <p><span>${capacidadeBateriaNecessaria.toFixed(1)} kWh</span></p>
+                <p style="font-size: 0.9em; margin-top: 15px;">*Esta é uma estimativa. Para um cálculo preciso, consulte um especialista da CV Energia Solar.</p>
+            `;
+            resultadoDiv.style.backgroundColor = '#e9f7ef'; /* Volta para a cor normal */
+            resultadoDiv.style.color = '#1a512d';
+            resultadoDiv.style.borderColor = '#cce5d6';
+        }
+    </script>
+
+</body>
+</html>
